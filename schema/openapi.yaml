@@ -1,0 +1,123 @@
+# This schema is incomplete; it is stubbed out to provide a starting-point for
+# developing routes + controllers. This schema should be updated as the API
+# is further specified.
+openapi: "3.0.2"
+info:
+  version: "0.0.0"
+  title: "arXiv Funding Metadata"
+  description: A clearing house for funding metadata for arXiv e-prints.
+  termsOfService: "https://arxiv.org/help/api/tou"
+  contact:
+    name: "arXiv API Team"
+    email: nextgen@arxiv.org
+  license:
+    name: MIT
+servers:
+  - url: https://api.arxiv.org/funding/
+    description: Funding API endpoint.
+
+paths:
+  /{arxiv_id}:
+    get:
+      operationId: getFundingForEPrint
+      description: |
+        Returns all available funding information for all versions of an
+        e-print.
+      responses:
+        '200':
+          description: Funding information the requested arXiv e-print.
+          content:
+            application/json:
+
+  /{arxiv_id}v{version}:
+    parameters:
+      - name: arxiv_id
+        in: path
+        description: arXiv identifier of the e-print
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: arXiv identifier of the e-print
+        required: true
+        schema:
+          type: integer
+          
+    get:
+      operationId: getFundingForEPrintVersion
+      description: |
+        Returns all available funding information for a specific version of an
+        e-print.
+      responses:
+        '200':
+          description: Funding information the requested arXiv e-print version.
+          content:
+            application/json:
+
+    post:
+      operationId: addFundingForEPrintVersion
+      description: Add a new funding entry for an e-print.
+
+      responses:
+        '201':
+          description: The funding entry was created successfully.
+          content:
+            application/json:
+  
+  /{arxiv_id}v{version}/{funding_id}:
+    parameters:
+      - name: arxiv_id
+        in: path
+        description: arXiv identifier of the e-print
+        required: true
+        schema:
+          type: string
+      - name: version
+        in: path
+        description: arXiv identifier of the e-print
+        required: true
+        schema:
+          type: integer
+      - name: funding_id
+        in: path
+        description: Unique identifier of a funding entry for an e-print.
+        required: true
+        schema:
+          type: integer
+
+    get:
+      operationId: getFundingEntry
+      description: |
+        Get detailed information about a funding entry. Includes information
+        about the history of this entry (i.e. creation events, subsequent 
+        modifications).
+
+      responses:
+        '200':
+          description: Detailed information about the funding entry.
+          content:
+            application/json:
+    
+    put:
+      operationId: updateFundingEntry
+      description: Make changes to an existing funding entry.
+
+      responses:
+        '200':
+          description: The funding entry was updated successfully.
+          content:
+            application/json:
+    
+    delete:
+      operationId: removeFundingEntry
+      description: Delete a funding entry.
+
+      responses:
+        '204':
+          description: The funding entry was deleted successfully.
+    
+    
+      
+  
+  

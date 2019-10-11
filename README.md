@@ -10,18 +10,15 @@ canonical record, but also allow for a variety of workflows for adding funding
 information. This project introduces a new service that can accession and make
 available funding information about specific arXiv e-prints.
 
-One big challenge will be thinking about whether/how to leverage taxonomies or
-authority lists to ensure that we have normalized data without having to
-maintain our own lists of funders. For example, NIH [publishes a list of
-funding agencies](https://www.nlm.nih.gov/bsd/grant_acronym.html) used in
-PubMed, including agencies outside the US, but it's unclear whether or not this
-will be sufficient for arXiv.
-
 ## Requirements
 
 1. Author-owners can add/edit funding information about their e-prints. They
    should be able to enter/select an agency, a grant/award number, and 
    possibly other information about the grant.
+
+   - The CrossRef funder registry should be leveraged to the greatest extent
+     possible. https://www.crossref.org/services/funder-registry/
+
 2. Readers can view funding information for specific e-prints.
 3. Provide a RESTful JSON API that allows authorized clients to add/edit
    funding information.

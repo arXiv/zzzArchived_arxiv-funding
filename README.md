@@ -1,5 +1,7 @@
 # arXiv funding
 
+# THIS IS A SKELETAL FLASK PROJECT, there is no useful code here.
+
 ## Problem 
 
 Information about funding sources associated with scientific outputs (including
